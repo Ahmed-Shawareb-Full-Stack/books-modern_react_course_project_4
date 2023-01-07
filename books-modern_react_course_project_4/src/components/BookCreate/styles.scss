@@ -1,0 +1,42 @@
+.form__container--create-book {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  padding: 2rem 6rem;
+  height: 20rem;
+  @media (max-width: 900px) {
+  }
+  @media (max-width: 600px) {
+    padding: 0.5rem 1rem;
+    height: 15rem;
+  }
+  background-color: forestgreen;
+  .form {
+    &__create-book {
+    }
+
+    &__title {
+      font-size: 2rem;
+      font-weight: 500;
+      color: white;
+    }
+
+    &__label {
+      color: white;
+      font-size: 2rem;
+    }
+
+    &__input-title {
+      height: 3rem;
+      font-size: 1rem;
+    }
+
+    &__btn-submit {
+      margin: 1rem 0;
+      padding: 0.5rem 3rem;
+      font-size: 1.5rem;
+      font-weight: 500;
+      background-color: rgb(226, 205, 11);
+    }
+  }
+}

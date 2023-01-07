@@ -1,13 +1,28 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import "./App.css";
+//! ─── Imports ─────────────────────────────────────────────────────────────────
+
+//* ─── React Imports ───────────────────────────────────────────────────────────
+
+import { useState, useEffect } from "react";
+
+//* ─── File Imports ────────────────────────────────────────────────────────────
+
+import "./App.scss";
+import BookCreate from "./components/BookCreate";
+
+//! ─── App Component ───────────────────────────────────────────────────────────
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [books, setBooks] = useState([]);
+
+  const createBook = (title) => {
+    console.log(`Book Created :${title}`);
+  };
+
+  useEffect;
 
   return (
     <div className="App">
-      <p>Books</p>
+      <BookCreate onCreate={createBook} />
     </div>
   );
 }
