@@ -15,12 +15,17 @@ const BookCreate = ({ onCreate }) => {
 
   const handleInputChange = (event) => {
     setBookTitle(event.target.value);
-    onCreate(bookTitle);
+  };
+
+  const resetField = (event) => {
+    event.target.value = "";
+    setBookTitle(event.target.value);
   };
 
   const handelSubmit = (event) => {
     event.preventDefault();
     onCreate(bookTitle);
+    resetField(event);
   };
   return (
     <div className="container-fluid form__container--create-book">

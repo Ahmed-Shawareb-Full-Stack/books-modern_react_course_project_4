@@ -1,0 +1,35 @@
+.book-show {
+  height: 30rem;
+}
+.book-title {
+  font-size: 3rem;
+
+  @media (max-width: 900px) {
+    font-size: 2rem;
+  }
+}
+
+.actions {
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  .action {
+    background-color: white;
+    border: none;
+    color: forestgreen;
+    box-shadow: 0 0.5rem 1rem rgba($color: #000000, $alpha: 0.25);
+  }
+  .btn__delete {
+    &:hover {
+      color: red;
+      box-shadow: 0 0.5rem 1rem rgba($color: #000000, $alpha: 0.4);
+    }
+  }
+  .btn__edit {
+    &:hover {
+      color: brown;
+      box-shadow: 0 0.5rem 1rem rgba($color: #000000, $alpha: 0.4);
+    }
+  }
+}
