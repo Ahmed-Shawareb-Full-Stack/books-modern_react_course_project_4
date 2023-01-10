@@ -9,18 +9,17 @@ import "./styles.scss";
 
 //! ─── Bookshow Component ──────────────────────────────────────────────────────
 
-const BookShow = ({ book, deleteBook, editBook }) => {
+const BookShow = ({ book }) => {
   const [showEdit, setShowEdit] = useState(false);
-  const handleDelete = (event) => {
-    deleteBook(book.id);
-  };
+
+  const handleDelete = () => {};
+
   const handleEditToggle = () => {
     setShowEdit(!showEdit);
   };
 
-  const editBookById = (id, title, showState) => {
-    editBook(id, title);
-    setShowEdit(showState);
+  const toggleEditLS = (showEditState) => {
+    setShowEdit(showEditState);
   };
 
   let content = (
@@ -35,7 +34,11 @@ const BookShow = ({ book, deleteBook, editBook }) => {
   );
   if (showEdit) {
     content = (
-      <BookEdit book={book} showEditState={showEdit} editBook={editBookById} />
+      <BookEdit
+        book={book}
+        showEditState={showEdit}
+        handleToggle={toggleEditLS}
+      />
     );
   }
   return (

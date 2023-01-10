@@ -1,14 +1,31 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import BooksContext from "../../context/books/context";
 import "./styles.scss";
-const BookEdit = ({ book, showEditState, handleToggle, editBook }) => {
+import axios from "axios";
+
+const BookEdit = ({ book, showEditState, handleToggle }) => {
+  const { setBooks, books } = useContext(BooksContext);
   const [title, setTitle] = useState(book.title);
   const handleChange = (event) => {
     setTitle(event.target.value);
   };
+  const editBookTitle = async (title) => {
+    const response = await axios.put(`http://localhost:3001/books/${book.id}`, {
+      title,
+    });
+
+    const updatedBooks = books.map((book) => {
+      if (book.id === id) {
+        return { ...book, ...response.data };
+      }
+      return book;
+    });
+    setBooks(updatedBooks);
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    editBook(book.id, title);
+    editBookTitle(title);
     handleToggle(!showEditState);
   };
   return (

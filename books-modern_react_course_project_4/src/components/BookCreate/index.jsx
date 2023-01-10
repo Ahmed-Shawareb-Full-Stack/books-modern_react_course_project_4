@@ -2,15 +2,18 @@
 
 //* ─── React Imports ───────────────────────────────────────────────────────────
 
-import React from "react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 
 //* ─── File Import ─────────────────────────────────────────────────────────────
 import "./styles.scss";
+import axios from "axios";
+import BooksContext from "../../context/books/context";
 
 //! ─── BookCreate Component ────────────────────────────────────────────────────
 
-const BookCreate = ({ onCreate }) => {
+const BookCreate = () => {
+  const books = useContext(BooksContext);
+  const [booksState, setBooksState] = useState(books);
   const [bookTitle, setBookTitle] = useState("");
 
   const handleInputChange = (event) => {
@@ -21,10 +24,18 @@ const BookCreate = ({ onCreate }) => {
     event.target.value = "";
     setBookTitle(event.target.value);
   };
+  const createBook = async (title) => {
+    const response = await axios.post("http://localhost:3001/books", {
+      title,
+    });
+    const updatedBooks = [...booksState, response.data];
+    console.log(updatedBooks);
+    setBooksState(updatedBooks);
+  };
 
-  const handelSubmit = (event) => {
+  const handelSubmit = async (event) => {
     event.preventDefault();
-    onCreate(bookTitle);
+    createBook(bookTitle);
     resetField(event);
   };
   return (
