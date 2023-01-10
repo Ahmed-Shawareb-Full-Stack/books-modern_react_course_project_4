@@ -17,6 +17,6 @@
 // use axios to do fetching process
 //axios.[operation]([url] , {payload})
 
-//useEffect(()=>{...do something } , []) >>> shape 1
-//useEffect(()=>{...do something } ) >>> shape 2
-//useEffect(()=>{...do something } , [something]) >>> shape 3
+//useEffect(()=>{...do something } , []) >>> shape 1 >>> call once when first render
+//useEffect(()=>{...do something } ) >>> shape 2 >>> call every time when rerender
+//useEffect(()=>{...do something } , [something]) >>> shape 3 >>> call when (something changes)

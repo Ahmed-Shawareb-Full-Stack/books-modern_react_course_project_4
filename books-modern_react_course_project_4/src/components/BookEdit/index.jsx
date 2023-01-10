@@ -1,6 +1,9 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import BooksContext from "../../context/BooksContext/context";
 import "./styles.scss";
-const BookEdit = ({ book, showEditState, handleToggle, editBook }) => {
+
+const BookEdit = ({ book, onSubmit }) => {
+  const { editBookTitle } = useContext(BooksContext);
   const [title, setTitle] = useState(book.title);
   const handleChange = (event) => {
     setTitle(event.target.value);
@@ -8,8 +11,8 @@ const BookEdit = ({ book, showEditState, handleToggle, editBook }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    editBook(book.id, title);
-    handleToggle(!showEditState);
+    editBookTitle(book.id, title);
+    onSubmit();
   };
   return (
     <div className="edit">

@@ -1,28 +1,17 @@
 //! ─── Imports ─────────────────────────────────────────────────────────────────
 //* ─── React Imports ───────────────────────────────────────────────────────────
+import { useContext } from "react";
 //* ─── Files Imports ───────────────────────────────────────────────────────────
+import BooksContext from "../../context/BooksContext/context";
 import BookShow from "../BookShow";
 import "./styles.scss";
 
 //! ─── BookList Component ──────────────────────────────────────────────────────
 
-const BookList = ({ books, deleteBook, editBook }) => {
-  const deleteBookById = (id) => {
-    deleteBook(id);
-  };
-
-  const editBookTitle = (id, title) => {
-    editBook(id, title);
-  };
+const BookList = () => {
+  const { books } = useContext(BooksContext);
   const renderedBooks = books.map((book) => {
-    return (
-      <BookShow
-        key={book.id}
-        book={book}
-        deleteBook={deleteBookById}
-        editBook={editBookTitle}
-      />
-    );
+    return <BookShow key={book.id} book={book} />;
   });
 
   return (
