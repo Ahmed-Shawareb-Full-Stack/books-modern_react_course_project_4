@@ -2,32 +2,27 @@
 
 //* ─── React Imports ───────────────────────────────────────────────────────────
 
-import axios from "axios";
-import { useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 
-//* ─── File Imports ────────────────────────────────────────────────────────────
+//* ─── Imports ────────────────────────────────────────────────────────────
 
 import "./App.scss";
 import BookCreate from "./components/BookCreate";
 import BookList from "./components/BookList";
+import BooksContext from "./context/BooksContext/context";
 
 //! ─── App Component ───────────────────────────────────────────────────────────
 
 function App() {
-  
+  const { fetchBooks } = useContext(BooksContext);
   useEffect(() => {
     fetchBooks();
   }, []);
 
-  
   return (
     <div className="App">
-      <BookList
-        books={books}
-        deleteBook={deleteBookById}
-        editBook={editBookTitle}
-      />
-      <BookCreate onCreate={createBook} />
+      <BookList />
+      <BookCreate />
     </div>
   );
 }

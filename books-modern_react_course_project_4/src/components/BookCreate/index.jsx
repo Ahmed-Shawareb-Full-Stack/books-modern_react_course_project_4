@@ -2,15 +2,17 @@
 
 //* ─── React Imports ───────────────────────────────────────────────────────────
 
-import React from "react";
+import React, { useContext } from "react";
 import { useState, useEffect } from "react";
 
-//* ─── File Import ─────────────────────────────────────────────────────────────
+//* ─── Import ─────────────────────────────────────────────────────────────
 import "./styles.scss";
+import BooksContext from "../../context/BooksContext/context";
 
 //! ─── BookCreate Component ────────────────────────────────────────────────────
 
-const BookCreate = ({ onCreate }) => {
+const BookCreate = () => {
+  const { createBook } = useContext(BooksContext);
   const [bookTitle, setBookTitle] = useState("");
 
   const handleInputChange = (event) => {
@@ -24,9 +26,10 @@ const BookCreate = ({ onCreate }) => {
 
   const handelSubmit = (event) => {
     event.preventDefault();
-    onCreate(bookTitle);
+    createBook(bookTitle);
     resetField(event);
   };
+
   return (
     <div className="container-fluid form__container--create-book">
       <div className="row form">

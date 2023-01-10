@@ -1,26 +1,29 @@
 //! ─── Imports ─────────────────────────────────────────────────────────────────
 
 //* ─── React Imports ───────────────────────────────────────────────────────────
-import { useState } from "react";
+import { useContext, useState } from "react";
+import BooksContext from "../../context/BooksContext/context";
 import BookEdit from "../BookEdit";
 //* ─── Files Imports ───────────────────────────────────────────────────────────
 
 import "./styles.scss";
 
-//! ─── Bookshow Component ──────────────────────────────────────────────────────
+//! ─── BookShow Component ──────────────────────────────────────────────────────
 
-const BookShow = ({ book, deleteBook, editBook }) => {
+const BookShow = ({ book }) => {
+  const { deleteBookById } = useContext(BooksContext);
   const [showEdit, setShowEdit] = useState(false);
-  const handleDelete = (event) => {
-    deleteBook(book.id);
-  };
+
   const handleEditToggle = () => {
     setShowEdit(!showEdit);
   };
 
-  const editBookById = (id, title, showState) => {
-    editBook(id, title);
-    setShowEdit(showState);
+  const handleSubmit = () => {
+    setShowEdit(false);
+  };
+
+  const handleDelete = () => {
+    deleteBookById(book.id);
   };
 
   let content = (
@@ -34,9 +37,7 @@ const BookShow = ({ book, deleteBook, editBook }) => {
     </div>
   );
   if (showEdit) {
-    content = (
-      <BookEdit book={book} showEditState={showEdit} editBook={editBookById} />
-    );
+    content = <BookEdit book={book} onSubmit={handleSubmit} />;
   }
   return (
     <div className="book-show card col-lg-3 col-md-5 col-sm-12 py-3 px-5 my-3 mx-5 position-relative d-flex align-items-center justify-content-center">
